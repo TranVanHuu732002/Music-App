@@ -5,6 +5,7 @@ const PLAYER_STORAGE_KEY = "F8_Player"
 
 const playList = $('.playlist')
 const heading = $('header h2')
+const singer = $('header p')
 const cdThumb = $('.cd-thumb')
 const audio = $('#audio')
 const cd = $('.cd')
@@ -15,6 +16,9 @@ const btnPrev = $('.btn-prev')
 const btnNext = $('.btn-next')
 const btnRandom = $('.btn-random')
 const btnRepeat = $('.btn-repeat')
+const timeCurrent = $('.time_current')
+const timeDuration = $('.time_duration')
+
 
 const app = {
     currentIndex: 0,
@@ -246,8 +250,9 @@ const app = {
                     //code
                 }
             }
-            
         }
+
+        _this.loadTimeSong()
     },
 
     scrollToActiveSong: function(){
@@ -261,6 +266,7 @@ const app = {
 
     loadCurrentSong: function(){
         heading.textContent = this.currentSong.name
+        singer.textContent = this.currentSong.singer
         cdThumb.style.backgroundImage = `url(${this.currentSong.image})` 
         audio.src = this.currentSong.path
     },  
@@ -298,6 +304,22 @@ const app = {
         app.isRepeat = app.config.isRepeat
     },
 
+    formatTime: function(timeInSeconds) {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = Math.floor(timeInSeconds % 60);
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+        return `${minutes}:${formattedSeconds}`;
+    },
+
+    loadTimeSong: function(){
+        audio.addEventListener("loadeddata", () => {
+            timeDuration.textContent = this.formatTime(audio.duration)
+        setInterval(() => {
+            timeCurrent.textContent = this.formatTime(audio.currentTime);
+            }, 100);
+        });
+    },
+
     start: function(){
         //Load cấu hình từ config vào app
         this.loadConfig()
@@ -312,7 +334,7 @@ const app = {
 
         btnRandom.classList.toggle('active',this.isRandom)
         btnRepeat.classList.toggle('active',this.isRepeat)
-
+        
     }
 }
 

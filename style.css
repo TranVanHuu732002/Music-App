@@ -1,6 +1,7 @@
 :root {
-    --primary-color: #ec1f55;
+    --primary-color: #1ed45f;
     --text-color: #333;
+    --wight-dasboard: 480px;
   }
   
   * {
@@ -10,7 +11,7 @@
   }
   
   body {
-    background-color: #f5f5f5;
+    background-color: #ccc;
   }
   
   html {
@@ -22,6 +23,7 @@
     position: relative;
     max-width: 480px;
     margin: 0 auto;
+    background-color: #fff;
   }
   
   .player .icon-pause {
@@ -38,12 +40,13 @@
   
   .dashboard {
     padding: 16px 16px 14px;
-    background-color: #fff;
+    background-color: #f5f5f5;
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 480px;
+    max-width: var(--wight-dasboard);
     border-bottom: 1px solid #ebebeb;
+    border-radius: 8px;
   }
   
   /* HEADER */
@@ -59,7 +62,15 @@
   
   header h2 {
     color: var(--text-color);
+    /* color:#333; */
     font-size: 20px;
+  }
+
+  header p {
+    color: #666;
+    font-size: 14px;
+    margin-top: -4px;
+    font-weight: 500;
   }
   
   /* CD */
@@ -87,7 +98,7 @@
   }
   
   .control .btn {
-    color: #666;
+    color: #000;
     padding: 18px;
     font-size: 18px;
   }
@@ -110,11 +121,11 @@
   
   .progress {
     width: 100%;
-    /* -webkit-appearance: none; */
+    -webkit-appearance: none;
     height: 6px;
     background: #d3d3d3;
     outline: none;
-    opacity: 0.7;
+    opacity: 0.8;
     -webkit-transition: 0.2s;
     transition: opacity 0.2s;
   }
@@ -128,9 +139,19 @@
     cursor: pointer;
   }
   
+  /* Time Song */
+  .time{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-color);
+  }
+
   /* PLAYLIST */
   .playlist {
-    margin-top: 408px;
+    margin-top: 450px;
+    margin-bottom: 40px;
     padding: 12px;
   }
   
@@ -138,7 +159,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 12px;
-    background-color: #fff;
+    background-color: #f7f7f7;
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
@@ -178,12 +199,12 @@
   
   .song .author {
     font-size: 12px;
-    color: #999;
+    color: #111;
   }
   
   .song .option {
     padding: 16px 8px;
-    color: #999;
+    color: #111;
     font-size: 18px;
   }
   
